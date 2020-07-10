@@ -8,4 +8,4 @@ yarn add typescript -D
 
 yarn add ts-node-dev -D
 
-- live server like nodemon to typescript
+- live server like nodemon to typescript, the creapt the script to run the server
