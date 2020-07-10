@@ -1,11 +1,11 @@
-yarn add express
-yarn add @types/express -D
+## Model // Entity
 
-yarn add typescript -D
+// it's the data structurure that some entity will be persisted, in a DB for example
 
-- yarn tsc -- init (set dir and outdir)
-  \*tsc = typescript compiler\*
+## Repository
 
-yarn add ts-node-dev -D
+// Persistence <-> Repository <-> Route
 
-- live server like nodemon to typescript, the creapt the script to run the server
+// keep the methods to manipulate the persisted data
+
+// Normally a repository per Model
