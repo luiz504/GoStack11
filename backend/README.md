@@ -33,3 +33,18 @@ This guys will deal with out bussness rules
 
 - Routes responsabilities =>
   // Route => receive Request, call the another file then return a response
+
+### Infra
+
+- Docker
+- Postigres
+
+#### Data Base Controllers
+
+- TypeORM
+
+### Tools
+
+- VsCode - IDE
+- Insomnia - Http Emulator
+- Dbeaver (DB Monitor)
