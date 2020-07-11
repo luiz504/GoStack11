@@ -15,3 +15,5 @@ wtc...
 Normally a repository per Model
 
 **SoC: Sepraration of Concerns**
+
+**DTO: Data Transfer Object**
