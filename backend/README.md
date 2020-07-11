@@ -54,3 +54,7 @@ This guys will deal with out bussness rules
 _Version controller to DataBase_
 
 - Only available to change the migration file if this file still local, if this file has already been merged or shared to other devs you can't edit it directly
+
+#### typeORM
+
+- This tool alredy have some default Repository methods to manipulate the persisted Data, so if only need to create a Repository file to our entity if some built-in method doesn't fit out feature.

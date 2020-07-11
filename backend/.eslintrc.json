@@ -16,7 +16,10 @@
   },
   "plugins": ["@typescript-eslint", "prettier"],
   "rules": {
-    "class-methods-use-this": ["error", { "exceptMethods": ["up", "down"] }],
+    "class-methods-use-this": [
+      "error",
+      { "exceptMethods": ["up", "down", "execute"] }
+    ],
     "import/extensions": [
       "error",
       "ignorePackages",
