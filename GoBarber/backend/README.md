@@ -28,5 +28,8 @@ This guys will deal with out bussness rules
 
 **SOLID**
 
+- Single Responsability Principle
+- Dependency Invertion Principle
+
 - Routes responsabilities =>
   // Route => receive Request, call the another file then return a response
