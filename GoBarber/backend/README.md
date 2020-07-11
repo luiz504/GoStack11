@@ -14,6 +14,19 @@ wtc...
 
 Normally a repository per Model
 
+## Service
+
+This guys will deal with out bussness rules
+
+- [x] Receive data
+- [x] Erros/executions handling
+- [x] Repository access
+
 **SoC: Sepraration of Concerns**
 
 **DTO: Data Transfer Object**
+
+**SOLID**
+
+- Routes responsabilities =>
+  // Route => receive Request, call the another file then return a response
