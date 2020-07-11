@@ -48,3 +48,9 @@ This guys will deal with out bussness rules
 - VsCode - IDE
 - Insomnia - Http Emulator
 - Dbeaver (DB Monitor)
+
+#### Migration
+
+_Version controller to DataBase_
+
+- Only available to change the migration file if this file still local, if this file has already been merged or shared to other devs you can't edit it directly
