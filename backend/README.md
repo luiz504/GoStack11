@@ -28,8 +28,35 @@ This guys will deal with out bussness rules
 
 **SOLID**
 
+**KISS - Keep It Simple and Stypid**
+
 - Single Responsability Principle
 - Dependency Invertion Principle
 
 - Routes responsabilities =>
   // Route => receive Request, call the another file then return a response
+
+### Infra
+
+- Docker
+- Postigres
+
+#### Data Base Controllers
+
+- TypeORM
+
+### Tools
+
+- VsCode - IDE
+- Insomnia - Http Emulator
+- Dbeaver (DB Monitor)
+
+#### Migration
+
+_Version controller to DataBase_
+
+- Only available to change the migration file if this file still local, if this file has already been merged or shared to other devs you can't edit it directly
+
+#### typeORM
+
+- This tool alredy have some default Repository methods to manipulate the persisted Data, so if only need to create a Repository file to our entity if some built-in method doesn't fit out feature.

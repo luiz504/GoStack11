@@ -5,16 +5,44 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "dev:server": "ts-node-dev --transpile-only --ignore node-modules src/server.ts"
+    "dev:server": "ts-node-dev --inspect --transpile-only --ignore node-modules src/server.ts",
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js ",
+    "lint": "lint-staged"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
+  },
+  "lint-staged": {
+    "**/*.+(ts)": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "**/*.+(json|css)": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "date-fns": "^2.14.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "husky": "^4.2.5",
+    "jsonwebtoken": "^8.5.1",
+    "lint-staged": "^10.2.11",
+    "pg": "^8.3.0",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.25",
     "uuidv4": "^6.1.1"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/cors": "^2.8.6",
+    "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.7",
+    "@types/jsonwebtoken": "^8.5.0",
     "@typescript-eslint/eslint-plugin": "^3.6.0",
     "@typescript-eslint/parser": "^3.6.0",
     "eslint": "6.8.0",
