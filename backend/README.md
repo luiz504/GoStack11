@@ -28,6 +28,8 @@ This guys will deal with out bussness rules
 
 **SOLID**
 
+**KISS - Keep It Simple and Stypid**
+
 - Single Responsability Principle
 - Dependency Invertion Principle
 
