@@ -20,6 +20,7 @@
       "error",
       { "exceptMethods": ["up", "down", "execute"] }
     ],
+    "camelcase": "off",
     "import/extensions": [
       "error",
       "ignorePackages",

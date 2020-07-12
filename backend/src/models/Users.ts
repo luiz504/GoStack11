@@ -1,21 +1,24 @@
 import {
   Entity,
-  Column,
   PrimaryGeneratedColumn,
+  Column,
   CreateDateColumn,
   UpdateDateColumn,
 } from "typeorm";
 
-@Entity("appointments")
-class Appointment {
+@Entity("users")
+class Users {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column() // default varchar string
-  provider: string;
+  @Column()
+  name: string;
 
-  @Column("timestamp with time zone")
-  date: Date;
+  @Column()
+  email: string;
+
+  @Column()
+  password: string;
 
   @CreateDateColumn()
   created_at: Date;
@@ -23,5 +26,4 @@ class Appointment {
   @UpdateDateColumn()
   updated_at: Date;
 }
-
-export default Appointment;
+export default Users;
