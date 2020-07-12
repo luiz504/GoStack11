@@ -6,7 +6,22 @@
   "scripts": {
     "build": "tsc",
     "dev:server": "ts-node-dev --inspect --transpile-only --ignore node-modules src/server.ts",
-    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js "
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js ",
+    "lint": "lint-staged"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
+  },
+  "lint-staged": {
+    "**/*.+(ts)": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "**/*.+(json|css)": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -14,6 +29,8 @@
     "date-fns": "^2.14.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
     "pg": "^8.3.0",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.25",
