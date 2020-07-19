@@ -21,6 +21,12 @@
       { "exceptMethods": ["up", "down", "execute"] }
     ],
     "camelcase": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "_"
+      }
+    ],
     "import/extensions": [
       "error",
       "ignorePackages",
