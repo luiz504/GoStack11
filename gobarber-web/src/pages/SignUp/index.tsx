@@ -1,7 +1,8 @@
 import React, { useCallback, useRef } from 'react';
 import * as Yup from 'yup';
-import { FiArrowLeft, FiMail, FiLock, FiUser } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
+
+import { FiArrowLeft, FiMail, FiLock, FiUser } from 'react-icons/fi';
 
 import { WrapperSignIn, Content, BackGround, Form } from './styles';
 
