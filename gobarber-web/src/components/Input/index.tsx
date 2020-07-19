@@ -20,7 +20,7 @@ const Input: React.FC<InputProps> = ({ icon: Icon, name, ...rest }) => {
   const [isFilled, setIsFilled] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
-  const { fieldName, defaultValue, registerField } = useField(name);
+  const { fieldName, defaultValue, error, registerField } = useField(name);
 
   const handleInputBlur = useCallback(() => {
     setIsFocused(false);
@@ -50,6 +50,7 @@ const Input: React.FC<InputProps> = ({ icon: Icon, name, ...rest }) => {
         {...rest}
         ref={inputRef}
       />
+      {error}
     </WrapperInput>
   );
 };
