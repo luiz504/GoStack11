@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, useContext } from 'react';
 import * as Yup from 'yup';
 import { FormHandles } from '@unform/core';
 
@@ -11,6 +11,7 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 
 import getValidationErrors from '../../utils/getValidationErrors';
+import AuthContext from '../../context/AuthContext';
 
 interface Idata {
   email: string;
@@ -19,6 +20,8 @@ interface Idata {
 
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+  const { name } = useContext(AuthContext);
+  console.log('auth', name); //eslint-disable-line
 
   const handleSubmit = useCallback(async (data: Idata) => {
     try {
