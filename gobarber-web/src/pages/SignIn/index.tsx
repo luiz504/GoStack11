@@ -58,7 +58,6 @@ const SignIn: React.FC = () => {
             name="password"
             type="password"
             icon={FiLock}
-            autoComplete="new-password"
             placeholder="password"
           />
 
