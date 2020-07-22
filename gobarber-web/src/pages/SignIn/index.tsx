@@ -47,8 +47,11 @@ const SignIn: React.FC = () => {
           formRef.current?.setErrors(errors);
         }
 
-        addToast();
-
+        addToast({
+          title: 'geyegyegyeyegeygeygeygeyegg',
+          description: 'uhduhdudhudhudhuhduhdduhudhduhudhudh',
+          type: 'success',
+        });
         // toast
       }
     },
