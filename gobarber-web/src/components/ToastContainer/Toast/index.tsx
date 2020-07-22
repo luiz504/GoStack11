@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { AnimatedValue } from 'react-spring';
 
 import {
   FiAlertCircle,
@@ -12,9 +13,10 @@ import { useToast, ToastMessage } from '../../../hooks/toast';
 
 interface ToastProps {
   message: ToastMessage;
+  style: AnimatedValue<React.CSSProperties>;
 }
 
-const Toast: React.FC<ToastProps> = ({ message }) => {
+const Toast: React.FC<ToastProps> = ({ message, style }) => {
   const { removeToast } = useToast();
 
   const icons = {
@@ -34,7 +36,11 @@ const Toast: React.FC<ToastProps> = ({ message }) => {
   }, [message.id, removeToast]);
 
   return (
-    <Container type={message.type} hasDescription={!!message.description}>
+    <Container
+      type={message.type}
+      hasDescription={!!message.description}
+      style={style}
+    >
       {icons[message.type || 'info']}
 
       <div>
