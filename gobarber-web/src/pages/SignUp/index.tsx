@@ -4,7 +4,14 @@ import { FormHandles } from '@unform/core';
 
 import { FiArrowLeft, FiMail, FiLock, FiUser } from 'react-icons/fi';
 
-import { WrapperSignIn, Content, BackGround, Form } from './styles';
+import { Link } from 'react-router-dom';
+import {
+  WrapperSignIn,
+  Content,
+  AnimationContainer,
+  BackGround,
+  Form,
+} from './styles';
 
 import logo from '../../assets/logo.svg';
 import Input from '../../components/Input';
@@ -45,22 +52,24 @@ const SignUp: React.FC = () => {
       <BackGround />
 
       <Content>
-        <img src={logo} alt="GoBarber" />
-        <Form onSubmit={handleSubmit} ref={formRef}>
-          <h1> Sign Up</h1>
-          <Input name="name" icon={FiUser} placeholder="name" />
+        <AnimationContainer>
+          <img src={logo} alt="GoBarber" />
+          <Form onSubmit={handleSubmit} ref={formRef}>
+            <h1> Sign Up</h1>
+            <Input name="name" icon={FiUser} placeholder="name" />
 
-          <Input name="email" icon={FiMail} placeholder="E-mail" />
+            <Input name="email" icon={FiMail} placeholder="E-mail" />
 
-          <Input name="password" icon={FiLock} placeholder="password" />
+            <Input name="password" icon={FiLock} placeholder="password" />
 
-          <Button type="submit"> Register </Button>
-        </Form>
+            <Button type="submit"> Register </Button>
+          </Form>
 
-        <a href="/Sign-in">
-          <FiArrowLeft />
-          Return Sign In
-        </a>
+          <Link to="/">
+            <FiArrowLeft />
+            Return Sign In
+          </Link>
+        </AnimationContainer>
       </Content>
     </WrapperSignIn>
   );

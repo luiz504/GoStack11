@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 import { Form as FormUnform } from '@unform/web';
 
@@ -18,6 +18,27 @@ export const Content = styled.div`
 
   width: 100%;
   max-width: 700px;
+`;
+
+const apperfromRight = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  } to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+
+`;
+
+export const AnimationContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  align-items: center;
+
+  animation: ${apperfromRight} 1s;
 
   > a {
     display: flex;

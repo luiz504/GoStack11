@@ -1,10 +1,17 @@
 import React, { useRef, useCallback } from 'react';
 import * as Yup from 'yup';
 import { FormHandles } from '@unform/core';
+import { Link } from 'react-router-dom';
 
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 
-import { WrapperSignIn, Content, BackGround, Form } from './styles';
+import {
+  WrapperSignIn,
+  Content,
+  AnimationContainer,
+  BackGround,
+  Form,
+} from './styles';
 
 import logo from '../../assets/logo.svg';
 import Input from '../../components/Input';
@@ -45,6 +52,7 @@ const SignIn: React.FC = () => {
           const errors = getValidationErrors(err);
 
           formRef.current?.setErrors(errors);
+          return;
         }
 
         addToast({
@@ -61,26 +69,33 @@ const SignIn: React.FC = () => {
   return (
     <WrapperSignIn>
       <Content>
-        <img src={logo} alt="GoBarber" />
-        <Form onSubmit={handleSubmit} ref={formRef}>
-          <h1> Sign In</h1>
-          <Input name="email" type="text" icon={FiMail} placeholder="E-mail" />
+        <AnimationContainer>
+          <img src={logo} alt="GoBarber" />
+          <Form onSubmit={handleSubmit} ref={formRef}>
+            <h1> Sign In</h1>
+            <Input
+              name="email"
+              type="text"
+              icon={FiMail}
+              placeholder="E-mail"
+            />
 
-          <Input
-            name="password"
-            type="password"
-            icon={FiLock}
-            placeholder="password"
-          />
+            <Input
+              name="password"
+              type="password"
+              icon={FiLock}
+              placeholder="password"
+            />
 
-          <Button type="submit"> Enter </Button>
+            <Button type="submit"> Enter </Button>
 
-          <a href="/forgot-password"> Forgot Password</a>
-        </Form>
-        <a href="/Sign-up">
-          <FiLogIn />
-          Sign Up
-        </a>
+            <a href="/forgot-password"> Forgot Password</a>
+          </Form>
+          <Link to="/Sign-up">
+            <FiLogIn />
+            Sign Up
+          </Link>
+        </AnimationContainer>
       </Content>
       <BackGround />
     </WrapperSignIn>
