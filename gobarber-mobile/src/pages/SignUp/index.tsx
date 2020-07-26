@@ -13,6 +13,7 @@ import Icon from 'react-native-vector-icons/Feather';
 
 import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
+import api from '../../services/api';
 import logoImg from '../../assets/logo.png';
 
 import Input, { InputRef } from '../../components/Input';
@@ -35,35 +36,41 @@ const SignUp: React.FC = () => {
 
   const navigation = useNavigation();
 
-  const handleSubmit = useCallback(async (data: SignUpFormData) => {
-    try {
-      formRef.current?.setErrors({});
-      const schema = Yup.object().shape({
-        name: Yup.string().required('Name is required'),
-        email: Yup.string()
-          .required('E-mail is required')
-          .email('Type a valid email'),
-        password: Yup.string().min(6, 'Minimum size 6 characteres'),
-      });
-      await schema.validate(data, {
-        abortEarly: false,
-      });
+  const handleSubmit = useCallback(
+    async (data: SignUpFormData) => {
+      try {
+        formRef.current?.setErrors({});
+        const schema = Yup.object().shape({
+          name: Yup.string().required('Name is required'),
+          email: Yup.string()
+            .required('E-mail is required')
+            .email('Type a valid email'),
+          password: Yup.string().min(6, 'Minimum size 6 characteres'),
+        });
+        await schema.validate(data, {
+          abortEarly: false,
+        });
 
-      // await api.post('/users', data);
-    } catch (err) {
-      if (err instanceof Yup.ValidationError) {
-        const errors = getValidationErrors(err);
+        await api.post('/users', data);
+        Alert.alert('Success!', 'You alredy can logn in!');
 
-        formRef.current?.setErrors(errors);
-        return;
+        navigation.navigate('SignIn');
+      } catch (err) {
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err);
+
+          formRef.current?.setErrors(errors);
+          return;
+        }
+
+        Alert.alert(
+          'Fail to create Account',
+          'Something got wrong, try again later!',
+        );
       }
-
-      Alert.alert(
-        'Fail to create Account',
-        'Something got wrong, try again later!',
-      );
-    }
-  }, []);
+    },
+    [navigation],
+  );
 
   return (
     <>
