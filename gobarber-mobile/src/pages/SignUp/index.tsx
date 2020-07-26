@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
+import * as Yup from 'yup';
 import Icon from 'react-native-vector-icons/Feather';
 
 import { Form } from '@unform/mobile';
@@ -19,6 +20,14 @@ import Button from '../../components/Button';
 
 import { Container, Title, BackSignInBtn, BackSignInBtnText } from './styles';
 
+import getValidationErrors from '../../utils/getValidationErrors';
+
+interface SignUpFormData {
+  name: string;
+  email: string;
+  password: string;
+}
+
 const SignUp: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const inputEmailRef = useRef<InputRef>(null);
@@ -26,9 +35,36 @@ const SignUp: React.FC = () => {
 
   const navigation = useNavigation();
 
-  const handleSubmit = useCallback(data => {
-    console.log('data', data);
+  const handleSubmit = useCallback(async (data: SignUpFormData) => {
+    try {
+      formRef.current?.setErrors({});
+      const schema = Yup.object().shape({
+        name: Yup.string().required('Name is required'),
+        email: Yup.string()
+          .required('E-mail is required')
+          .email('Type a valid email'),
+        password: Yup.string().min(6, 'Minimum size 6 characteres'),
+      });
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+      // await api.post('/users', data);
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        const errors = getValidationErrors(err);
+
+        formRef.current?.setErrors(errors);
+        return;
+      }
+
+      Alert.alert(
+        'Fail to create Account',
+        'Something got wrong, try again later!',
+      );
+    }
   }, []);
+
   return (
     <>
       <KeyboardAvoidingView
@@ -79,11 +115,9 @@ const SignUp: React.FC = () => {
                 returnKeyType="send"
                 onSubmitEditing={() => formRef.current?.submitForm()}
               />
-
-              <Button onPress={() => formRef.current?.submitForm()}>
-                Enter
-              </Button>
             </Form>
+
+            <Button onPress={() => formRef.current?.submitForm()}>Enter</Button>
           </Container>
         </ScrollView>
       </KeyboardAvoidingView>
