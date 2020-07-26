@@ -1,10 +1,11 @@
+import { Platform } from 'react-native';
 import styled from 'styled-components/native';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 
 import { robotoSlabMedium, robotoSlabRegular } from '../../styles/fonts';
 
 export const Container = styled.View`
-  padding: 0 30px;
+  padding: 0 30px ${Platform.OS === 'android' ? 120 : 40}px;
 
   flex: 1;
   align-items: center;
