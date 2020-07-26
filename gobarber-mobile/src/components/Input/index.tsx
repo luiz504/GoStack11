@@ -3,6 +3,8 @@ import React, {
   useRef,
   useImperativeHandle,
   forwardRef,
+  useState,
+  useCallback,
 } from 'react';
 import { TextInputProps } from 'react-native';
 
@@ -18,7 +20,7 @@ interface InputValueRef {
   value: string;
 }
 
-interface InputRef {
+export interface InputRef {
   focus(): void;
 }
 
@@ -26,10 +28,22 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = (
   { name, icon, ...rest },
   ref,
 ) => {
+  const [isFocused, setIsFocused] = useState(false);
+  const [isfilled, setIsFilled] = useState(false);
   const { registerField, defaultValue = '', fieldName, error } = useField(name);
 
   const inputValueRef = useRef<InputValueRef>({ value: defaultValue });
   const inputElementRef = useRef<any>(null); //eslint-disable-line
+
+  const handleInputFocus = useCallback(() => {
+    setIsFocused(true);
+  }, []);
+
+  const handleInputBlur = useCallback(() => {
+    setIsFocused(false);
+
+    setIsFilled(!!inputValueRef.current.value);
+  }, []);
 
   useImperativeHandle(ref, () => ({
     focus() {
@@ -54,8 +68,12 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = (
   }, [registerField, fieldName]);
 
   return (
-    <Container>
-      <Icon name={icon} size={20} color="#666360" />
+    <Container isFocused={isFocused}>
+      <Icon
+        name={icon}
+        size={20}
+        color={isFocused || isfilled ? '#ff9000' : '#666360'}
+      />
 
       <TextInput
         ref={inputElementRef}
@@ -66,6 +84,8 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = (
         onChangeText={value => {
           inputValueRef.current.value = value;
         }}
+        onFocus={handleInputFocus}
+        onBlur={handleInputBlur}
       />
     </Container>
   );

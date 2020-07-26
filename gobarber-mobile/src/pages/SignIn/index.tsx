@@ -63,7 +63,7 @@ const SignIn: React.FC = () => {
                 autoCapitalize="none"
                 keyboardType="email-address"
                 returnKeyType="next"
-                onSubmitEditing={() => inputPwRef.current?.focus}
+                onSubmitEditing={() => inputPwRef.current?.focus()}
               />
 
               <Input
