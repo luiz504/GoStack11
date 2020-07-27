@@ -28,6 +28,7 @@ import {
 } from './styles';
 
 import getValidationErrors from '../../utils/getValidationErrors';
+import { useAuth } from '../../hooks/auth';
 
 interface ISignInFormData {
   email: string;
@@ -38,34 +39,40 @@ const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const inputPwRef = useRef<InputRef>(null);
 
+  const { signIn } = useAuth();
+
   const navigation = useNavigation();
 
-  const handleSubmit = useCallback(async (data: ISignInFormData) => {
-    try {
-      formRef.current?.setErrors({});
+  const handleSubmit = useCallback(
+    async (data: ISignInFormData) => {
+      try {
+        formRef.current?.setErrors({});
 
-      const schema = Yup.object().shape({
-        email: Yup.string()
-          .required('E-mail is required')
-          .email('Type a valid email'),
-        password: Yup.string().required('Password Required'),
-      });
+        const schema = Yup.object().shape({
+          email: Yup.string()
+            .required('E-mail is required')
+            .email('Type a valid email'),
+          password: Yup.string().required('Password Required'),
+        });
 
-      await schema.validate(data, {
-        abortEarly: false,
-      });
+        await schema.validate(data, {
+          abortEarly: false,
+        });
 
-      // await signIn({ email: data.email, password: data.password });
-    } catch (err) {
-      if (err instanceof Yup.ValidationError) {
-        const errors = getValidationErrors(err);
+        await signIn({ email: data.email, password: data.password });
+      } catch (err) {
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err);
 
-        formRef.current?.setErrors(errors);
-        return;
+          formRef.current?.setErrors(errors);
+          return;
+        }
+
+        Alert.alert('Faill to Authenticate', 'Check email and password');
       }
-      Alert.alert('Faill to Authenticate', 'Check email and password');
-    }
-  }, []);
+    },
+    [signIn],
+  );
 
   return (
     <>
