@@ -18,8 +18,9 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 
 import getValidationErrors from '../../utils/getValidationErrors';
-import { useAuth } from '../../hooks/auth';
+
 import { useToast } from '../../hooks/toast';
+import { useAuth } from '../../hooks/auth';
 
 interface ISignInFormData {
   email: string;
@@ -56,9 +57,9 @@ const SignIn: React.FC = () => {
         }
 
         addToast({
-          title: 'geyegyegyeyegeygeygeygeyegg',
-          description: 'uhduhdudhudhudhuhduhdduhudhduhudhudh',
-          type: 'success',
+          type: 'error',
+          title: 'Fail to Authenticate',
+          description: 'Check Email, Password and try again later...',
         });
         // toast
       }
