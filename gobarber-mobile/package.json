@@ -15,17 +15,12 @@
     }
   },
   "lint-staged": {
-    "**/*.+(ts|js|tsx)": [
+    "*.{js,jsx,ts,tsx}": [
       "eslint --fix",
       "prettier --write"
     ],
-    "**/*.+(json|css)": [
+    "*.{json,css,md,html}": [
       "prettier --write"
-    ]
-  },
-  "rnpm": {
-    "assets": [
-      "./assets/fonts/"
     ]
   },
   "dependencies": {
