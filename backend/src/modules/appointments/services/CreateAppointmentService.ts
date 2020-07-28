@@ -1,9 +1,11 @@
-import { startOfHour } from "date-fns";
-import { getCustomRepository } from "typeorm";
+import { startOfHour } from 'date-fns';
+import { getCustomRepository } from 'typeorm';
 
-import Appointment from "../models/Appointment";
-import AppointmentsRepository from "../repositories/AppointmentsRepository";
-import AppError from "../errors/AppError";
+import AppError from '@shared/errors/AppError';
+
+import AppointmentsRepository from '../repositories/AppointmentsRepository';
+
+import Appointment from '../infra/typeorm/entities/Appointment';
 
 interface RequestDTO {
   provider_id: string;
@@ -20,11 +22,11 @@ class CreateAppointmentService {
     const appointmentDate = startOfHour(date);
 
     const findAppointmentInSameDate = await appointmentsRepository.findByDate(
-      appointmentDate
+      appointmentDate,
     );
 
     if (findAppointmentInSameDate) {
-      throw new AppError("This appointment is aldery booked");
+      throw new AppError('This appointment is aldery booked');
     }
 
     const appointment = appointmentsRepository.create({
