@@ -10,6 +10,7 @@ import AppError from '@shared/errors/AppError';
 import routes from './routes';
 
 import '@shared/infra/typeorm';
+import '@shared/container';
 
 const app = express();
 
@@ -38,5 +39,5 @@ app.use(
 );
 
 app.listen(3333, () => {
-  console.log("Server on on Port 3333"); //eslint-disable-line
+  console.log("-->> Server on on Port 3333"); //eslint-disable-line
 });
